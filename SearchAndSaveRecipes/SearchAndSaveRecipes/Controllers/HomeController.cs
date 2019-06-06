@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using SearchAndSaveRecipes.Models;
 
 namespace SearchAndSaveRecipes.Controllers
 {
@@ -13,17 +14,15 @@ namespace SearchAndSaveRecipes.Controllers
             return View();
         }
 
-        public ActionResult About()
+        [HttpPost]
+        public ActionResult GetRecipesFromAPI(string ingredients, string title)
         {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
+            RecipeAPIDAL.APICall(ingredients, title);
+            return RedirectToAction("DisplayRecipes");
         }
 
-        public ActionResult Contact()
+        public ActionResult DisplayRecipes()
         {
-            ViewBag.Message = "Your contact page.";
-
             return View();
         }
     }
