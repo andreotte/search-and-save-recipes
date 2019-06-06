@@ -197,6 +197,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Recipe.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\RecipeAPIDAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
