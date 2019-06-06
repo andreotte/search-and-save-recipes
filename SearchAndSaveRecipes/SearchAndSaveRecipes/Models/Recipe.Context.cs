@@ -13,10 +13,10 @@ namespace SearchAndSaveRecipes.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class RecipePuppyEntities : DbContext
+    public partial class RecipePuppyEntities1 : DbContext
     {
-        public RecipePuppyEntities()
-            : base("name=RecipePuppyEntities")
+        public RecipePuppyEntities1()
+            : base("name=RecipePuppyEntities1")
         {
         }
     

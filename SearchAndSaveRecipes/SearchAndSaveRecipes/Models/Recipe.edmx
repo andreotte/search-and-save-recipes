@@ -33,7 +33,7 @@
           <Property Name="Ingredients" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="ImageURL" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
         </EntityType>
-        <EntityContainer Name="RecipePuppyEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="RecipePuppyEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Recipes" EntityType="Self.Recipe" />
         </EntityContainer>
       </Schema>
@@ -41,7 +41,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="RecipePuppyModelStoreContainer" CdmEntityContainer="RecipePuppyEntities">
+        <EntityContainerMapping StorageEntityContainer="RecipePuppyModelStoreContainer" CdmEntityContainer="RecipePuppyEntities1">
           <EntitySetMapping Name="Recipes">
             <EntityTypeMapping TypeName="RecipePuppyModel.Recipe">
               <MappingFragment StoreEntitySet="Recipes">
