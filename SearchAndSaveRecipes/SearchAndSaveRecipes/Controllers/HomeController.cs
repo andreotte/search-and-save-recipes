@@ -15,15 +15,12 @@ namespace SearchAndSaveRecipes.Controllers
         }
 
         [HttpPost]
-        public ActionResult GetRecipesFromAPI(string ingredients, string title)
+        public ActionResult DisplayRecipes(string ingredients, string title)
         {
-            RecipeAPIDAL.APICall(ingredients, title);
-            return RedirectToAction("DisplayRecipes");
+            List<Recipe> recipes = RecipeAPIDAL.APICall(ingredients, title);
+            return View(recipes);
         }
 
-        public ActionResult DisplayRecipes()
-        {
-            return View();
-        }
+
     }
 }
