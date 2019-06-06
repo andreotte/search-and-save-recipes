@@ -10,7 +10,8 @@
 
 Models/
 
-
+# Ignore WebConfig
+Web.config
 
 ### Windows ###
 
