@@ -1,51 +1,11 @@
-﻿@model IEnumerable<SearchAndSaveRecipes.Models.Recipe>
+﻿<br />
 
-@{
-    ViewBag.Title = "Index";
-}
+<h2>Recipe Search</h2>
+<p>Powered by Recipe Puppy API</p><br />
+<p>Don't worry, we don't eat puppies.</p>
 
-<h2>Index</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.RecipeURL)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Ingredients)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ImageURL)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Title)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.RecipeURL)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Ingredients)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ImageURL)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
-        </td>
-    </tr>
-}
-
-</table>
+<form action="~/Home/GetRecipesFromAPI/" method="post">
+    Search by ingredients<input type="text" name="ingredients"/>
+    Search by title<input type="text" name="title"/>
+    <input type="submit"/>
+</form>
