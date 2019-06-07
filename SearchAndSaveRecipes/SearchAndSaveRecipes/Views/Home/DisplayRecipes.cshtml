@@ -1,6 +1,7 @@
 ﻿@model IEnumerable<SearchAndSaveRecipes.Models.Recipe>
 
 @{
+
     ViewBag.Title = "DisplayRecipes";
 }
 
@@ -21,24 +22,26 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            <a href="@Html.DisplayFor(modelItem => item.RecipeURL)"><img src="@item.ImageURL" height="100" /> </a>
-        </td>
-        <td>
-            <a href="@Html.DisplayFor(modelItem => item.RecipeURL)" target="_blank">@Html.DisplayFor(modelItem => item.Title)</a>
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Ingredients)
-        </td>
-        <td>
-            @Html.ActionLink("Add to Favorites", "Add", new { id = item.ID }) |
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                <a href="@Html.DisplayFor(modelItem => item.RecipeURL)"><img src="@item.ImageURL" height="100" /> </a>
+            </td>
+            <td>
+                <a href="@Html.DisplayFor(modelItem => item.RecipeURL)" target="_blank">@Html.DisplayFor(modelItem => item.Title)</a>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ingredients)
+            </td>
+            <td>
+                @Html.ActionLink("Add to Favorites", "Add", new { id = item.ID }) |
+            </td>
+        </tr>
+    }
 
 </table>
+
 
 <form action="~/Home/DisplayRecipes">
     <input type="submit" value="Next Page" />
