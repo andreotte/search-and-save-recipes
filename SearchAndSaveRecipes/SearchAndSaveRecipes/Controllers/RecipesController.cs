@@ -15,6 +15,13 @@ namespace SearchAndSaveRecipes.Controllers
         private RecipePuppyEntities db = new RecipePuppyEntities();
 
         // GET: Recipes
+
+        public ActionResult DisplayFavorites()
+        {
+            List<Recipe> favorites = db.Recipes.ToList();
+            return View(favorites);
+        }
+
         public ActionResult Index()
         {
             return View(db.Recipes.ToList());
