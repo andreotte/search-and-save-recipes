@@ -12,7 +12,7 @@ namespace SearchAndSaveRecipes.Controllers
 {
     public class RecipesController : Controller
     {
-        private RecipePuppyEntities db = new RecipePuppyEntities();
+        private RecipePuppyEntities1 db = new RecipePuppyEntities1();
 
         // GET: Recipes
         public ActionResult Index()

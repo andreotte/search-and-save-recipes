@@ -14,13 +14,62 @@ namespace SearchAndSaveRecipes.Controllers
             return View();
         }
 
-        [HttpPost]
+        //[HttpPost]
         public ActionResult DisplayRecipes(string ingredients, string title)
         {
-            List<Recipe> recipes = RecipeAPIDAL.APICall(ingredients, title);
+            if (Session["page"] == null)
+            {
+                Session["page"] = 1;
+            }
+            else
+            {
+                int pageNumber = (int)Session["page"];
+                pageNumber++;
+                Session["page"] = pageNumber;
+            }
+
+            if (Session["ingredients"] != null)
+            {
+                ingredients = Session["ingredients"].ToString();
+            }
+            else
+            {
+                Session["ingredients"] = ingredients;
+            }
+
+            if (Session["title"] != null)
+            {
+                title = Session["title"].ToString();
+            }
+            else
+            {
+                Session["title"] = title;
+            }
+
+            string page = Session["page"].ToString();
+
+            List<Recipe> recipes = RecipeAPIDAL.APICall(ingredients, title, page);
+
+            return View(recipes);
+        }
+
+        public ActionResult NextPage()
+        {
+            string ingredients = Session["ingredients"].ToString();
+            string title = Session["title"].ToString();
+            string page = Session["page"].ToString();
+
+            List<Recipe> recipes = RecipeAPIDAL.APICall(ingredients, title, page);
             return View(recipes);
         }
 
 
+        public ActionResult Add()
+        {
+            return RedirectToAction("~/Recipes/Index");
+        }
+
     }
+
+    
 }
