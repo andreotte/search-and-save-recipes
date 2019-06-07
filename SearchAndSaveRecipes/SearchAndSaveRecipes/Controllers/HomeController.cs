@@ -10,6 +10,8 @@ namespace SearchAndSaveRecipes.Controllers
 {
     public class HomeController : Controller
     {
+
+
         RecipePuppyEntities db = new RecipePuppyEntities();
 
         public ActionResult Index()
@@ -26,6 +28,7 @@ namespace SearchAndSaveRecipes.Controllers
             return View(recipes);
         }
 
+
         //Method runs when the user enters a new ingredient and or title in the search view
         [HttpPost]
         public ActionResult DisplayRecipes(string ingredients, string title)
@@ -35,7 +38,7 @@ namespace SearchAndSaveRecipes.Controllers
             search.Ingredients = ingredients;
             search.Page = 1;
             Session["Search"] = search;
-
+        
             List<Recipe> recipes = RecipeAPIDAL.APICall(search.Ingredients, search.Title, search.Page.ToString());
             return View(recipes);
         }
@@ -51,7 +54,7 @@ namespace SearchAndSaveRecipes.Controllers
             db.Recipes.AddOrUpdate(r);
             db.SaveChanges();
 
-            return RedirectToAction("DisplayFavorites", "Recipes");
+            return RedirectToAction("DisplayFavorites", "Recipes" );
         }
-    }
+    }    
 }
