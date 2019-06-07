@@ -49,12 +49,12 @@ namespace SearchAndSaveRecipes.Controllers
             string page = Session["page"].ToString();
 
             List<Recipe> recipes = RecipeAPIDAL.APICall(ingredients, title, page);
-
             return View(recipes);
         }
 
-        public ActionResult Add()
+        public ActionResult AddFavorite(string itemTitle, string itemRecipeURL, string itemIngredients, string itemImageURL)
         {
+
             return RedirectToAction("~/Recipes/Index");
         }
 
