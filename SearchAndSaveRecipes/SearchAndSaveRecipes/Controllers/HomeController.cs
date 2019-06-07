@@ -17,15 +17,15 @@ namespace SearchAndSaveRecipes.Controllers
         //[HttpPost]
         public ActionResult DisplayRecipes(string ingredients, string title)
         {
-            if (Session["page"] == null)
-            {
-                Session["page"] = 1;
-            }
-            else
+            if (Session["page"] != null)
             {
                 int pageNumber = (int)Session["page"];
                 pageNumber++;
                 Session["page"] = pageNumber;
+            }
+            else
+            {
+                Session["page"] = 1;
             }
 
             if (Session["ingredients"] != null)
@@ -52,17 +52,6 @@ namespace SearchAndSaveRecipes.Controllers
 
             return View(recipes);
         }
-
-        public ActionResult NextPage()
-        {
-            string ingredients = Session["ingredients"].ToString();
-            string title = Session["title"].ToString();
-            string page = Session["page"].ToString();
-
-            List<Recipe> recipes = RecipeAPIDAL.APICall(ingredients, title, page);
-            return View(recipes);
-        }
-
 
         public ActionResult Add()
         {
