@@ -12,7 +12,7 @@ namespace SearchAndSaveRecipes.Controllers
 {
     public class RecipesController : Controller
     {
-        private RecipePuppyEntities db = new RecipePuppyEntities();
+        private RecipePuppyEntities1 db = new RecipePuppyEntities1();
 
         // GET: Recipes
 
@@ -119,7 +119,7 @@ namespace SearchAndSaveRecipes.Controllers
             Recipe recipe = db.Recipes.Find(id);
             db.Recipes.Remove(recipe);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("DisplayFavorites");
         }
 
         protected override void Dispose(bool disposing)
