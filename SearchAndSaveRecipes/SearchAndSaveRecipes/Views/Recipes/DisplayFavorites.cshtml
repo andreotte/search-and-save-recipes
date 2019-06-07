@@ -1,0 +1,46 @@
+﻿@model IEnumerable<SearchAndSaveRecipes.Models.Recipe>
+<h2>Your Favorites</h2>
+
+<table class="table">
+    <tr>
+        <th></th>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Ingredients)
+        </th>
+        <th></th>
+    </tr>
+
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @{ if (item.ImageURL == "")
+                    {
+                        <a href="@Html.DisplayFor(modelItem => item.RecipeURL)" target="_blank">
+                            <img src="https://www.bbcgoodfood.com/sites/all/themes/bbcw_goodfood/images/dummy-content/memberRecipeNoImage.png
+" height="100" />
+                        </a>
+                    }
+                    else
+                    {
+                        <a href="@Html.DisplayFor(modelItem => item.RecipeURL)" target="_blank"><img src="@item.ImageURL" height="100" /> </a>
+                    }
+                }
+            </td>
+            <td>
+                <a href="@Html.DisplayFor(modelItem => item.RecipeURL)" target="_blank">@Html.DisplayFor(modelItem => item.Title)</a>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ingredients)
+            </td>
+            <td>
+                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+            </td>
+        </tr>
+    }
+
+</table>

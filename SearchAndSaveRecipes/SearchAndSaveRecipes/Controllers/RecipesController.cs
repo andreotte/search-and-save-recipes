@@ -15,6 +15,13 @@ namespace SearchAndSaveRecipes.Controllers
         private RecipePuppyEntities db = new RecipePuppyEntities();
 
         // GET: Recipes
+
+        public ActionResult DisplayFavorites()
+        {
+            List<Recipe> favorites = db.Recipes.ToList();
+            return View(favorites);
+        }
+
         public ActionResult Index()
         {
             return View(db.Recipes.ToList());
@@ -112,7 +119,7 @@ namespace SearchAndSaveRecipes.Controllers
             Recipe recipe = db.Recipes.Find(id);
             db.Recipes.Remove(recipe);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("DisplayFavorites");
         }
 
         protected override void Dispose(bool disposing)
