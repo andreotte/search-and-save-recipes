@@ -278,6 +278,7 @@
     <Content Include="Views\Recipes\Edit.cshtml" />
     <Content Include="Views\Recipes\Index.cshtml" />
     <Content Include="Views\Home\DisplayRecipes.cshtml" />
+    <Content Include="Views\Recipes\DisplayFavorites.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
