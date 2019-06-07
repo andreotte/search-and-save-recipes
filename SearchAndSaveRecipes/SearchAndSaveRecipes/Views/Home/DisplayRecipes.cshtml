@@ -5,23 +5,18 @@
 }
 
 <h2>DisplayRecipes</h2>
+<h3>Page @Session["page"]</h3>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table class="table">
     <tr>
+        <th>
+            @*@Html.DisplayNameFor(model => model.ImageURL)*@
+        </th>
         <th>
             @Html.DisplayNameFor(model => model.Title)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.RecipeURL)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.Ingredients)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ImageURL)
         </th>
         <th></th>
     </tr>
@@ -29,23 +24,22 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Title)
+            <a href="@Html.DisplayFor(modelItem => item.RecipeURL)"><img src="@item.ImageURL" height="100" /> </a>
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.RecipeURL)
+            <a href="@Html.DisplayFor(modelItem => item.RecipeURL)" target="_blank">@Html.DisplayFor(modelItem => item.Title)</a>
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Ingredients)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.ImageURL)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+            @Html.ActionLink("Add to Favorites", "Add", new { id = item.ID }) |
         </td>
     </tr>
 }
 
 </table>
+
+<form action="~/Home/DisplayRecipes">
+    <input type="submit" value="Next Page" />
+</form>
