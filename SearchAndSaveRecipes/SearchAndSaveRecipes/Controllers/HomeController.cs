@@ -11,48 +11,34 @@ namespace SearchAndSaveRecipes.Controllers
     public class HomeController : Controller
     {
 
-        RecipePuppyEntities1 db = new RecipePuppyEntities1();
+        RecipePuppyEntities db = new RecipePuppyEntities();
+
 
         public ActionResult Index()
         {
             return View();
         }
 
-        //[HttpPost]
+        //Method runs when the user hits the "Search" in the site ribbon or when hitting "Next Page"
+        public ActionResult DisplayRecipes()
+        {
+            Search search = (Search) Session["Search"];
+            search.Page++;
+            List<Recipe> recipes = RecipeAPIDAL.APICall(search.Ingredients, search.Title, search.Page.ToString());
+            return View(recipes);
+        }
+
+        //Method runs when the user enters a new ingredient and or title in the search view
+        [HttpPost]
         public ActionResult DisplayRecipes(string ingredients, string title)
         {
-            if (Session["page"] != null)
-            {
-                int pageNumber = (int)Session["page"];
-                pageNumber++;
-                Session["page"] = pageNumber;
-            }
-            else
-            {
-                Session["page"] = 1;
-            }
-
-            if (Session["ingredients"] != null)
-            {
-                ingredients = Session["ingredients"].ToString();
-            }
-            else
-            {
-                Session["ingredients"] = ingredients;
-            }
-
-            if (Session["title"] != null)
-            {
-                title = Session["title"].ToString();
-            }
-            else
-            {
-                Session["title"] = title;
-            }
-
-            string page = Session["page"].ToString();
-
-            List<Recipe> recipes = RecipeAPIDAL.APICall(ingredients, title, page);
+            Search search = new Search();
+            search.Title = title;
+            search.Ingredients = ingredients;
+            search.Page = 1;
+            Session["Search"] = search;
+        
+            List<Recipe> recipes = RecipeAPIDAL.APICall(search.Ingredients, search.Title, search.Page.ToString());
             return View(recipes);
         }
 
@@ -68,9 +54,6 @@ namespace SearchAndSaveRecipes.Controllers
             db.SaveChanges();
 
             return RedirectToAction("DisplayFavorites", "Recipes" );
-
         }
-
-
     }    
 }
