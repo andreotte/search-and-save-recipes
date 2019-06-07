@@ -11,7 +11,7 @@ namespace SearchAndSaveRecipes.Controllers
     public class HomeController : Controller
     {
 
-        RecipePuppyEntities db = new RecipePuppyEntities();
+        RecipePuppyEntities1 db = new RecipePuppyEntities1();
 
         public ActionResult Index()
         {
