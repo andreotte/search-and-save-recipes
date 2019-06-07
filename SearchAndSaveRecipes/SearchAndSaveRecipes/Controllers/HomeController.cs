@@ -10,11 +10,11 @@ namespace SearchAndSaveRecipes.Controllers
 {
     public class HomeController : Controller
     {
-
         RecipePuppyEntities db = new RecipePuppyEntities();
 
         public ActionResult Index()
         {
+            
             return View();
         }
 
@@ -68,9 +68,6 @@ namespace SearchAndSaveRecipes.Controllers
             db.SaveChanges();
 
             return RedirectToAction("DisplayFavorites", "Recipes" );
-
         }
-
-
     }    
 }
