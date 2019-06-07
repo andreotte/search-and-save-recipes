@@ -22,27 +22,44 @@
         <th></th>
     </tr>
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                <a href="@Html.DisplayFor(modelItem => item.RecipeURL)"><img src="@item.ImageURL" height="100" /> </a>
-            </td>
-            <td>
-                <a href="@Html.DisplayFor(modelItem => item.RecipeURL)" target="_blank">@Html.DisplayFor(modelItem => item.Title)</a>
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Ingredients)
-            </td>
-            <td>
-                @Html.ActionLink("Add to Favorites", "Add", new { id = item.ID }) |
-            </td>
-        </tr>
-    }
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            <a href="@Html.DisplayFor(modelItem => item.RecipeURL)"><img src="@item.ImageURL" height="100" /> </a>
+        </td>
+        <td>
+            <a href="@Html.DisplayFor(modelItem => item.RecipeURL)" target="_blank">@Html.DisplayFor(modelItem => item.Title)</a>
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Ingredients)
+        </td>
+        <td>
+            <form action="~/Home/AddFavorite">
+                <input type="submit" value="Save To Favorites" />
+                <input type="hidden" value="@item.Title" name="itemTitle"/>
+                <input type="hidden" value="@item.RecipeURL" name="itemRecipeURL"/>
+                <input type="hidden" value="@item.Ingredients" name="itemIngredients"/>
+                <input type="hidden" value="@item.ImageURL" name="itemImageURL"/>
+            </form>
+        </td>
+    </tr>
+}
 
 </table>
 
+@{ 
+    var myList = Model.ToList();
+    int count = myList.Count();
 
-<form action="~/Home/DisplayRecipes">
-    <input type="submit" value="Next Page" />
-</form>
+    if (count == 10)
+    {
+        <form action="~/Home/DisplayRecipes">
+            <input type="submit" value="Next Page" />
+        </form>
+     
+    }
+
+}
+
+

@@ -4,11 +4,15 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using SearchAndSaveRecipes.Models;
+using System.Data.Entity.Migrations;
 
 namespace SearchAndSaveRecipes.Controllers
 {
     public class HomeController : Controller
     {
+
+        RecipePuppyEntities1 db = new RecipePuppyEntities1();
+
         public ActionResult Index()
         {
             return View();
@@ -49,13 +53,27 @@ namespace SearchAndSaveRecipes.Controllers
             string page = Session["page"].ToString();
 
             List<Recipe> recipes = RecipeAPIDAL.APICall(ingredients, title, page);
-
             return View(recipes);
         }
 
-        public ActionResult Add()
+        public ActionResult AddFavorite(string itemTitle, string itemRecipeURL, string itemIngredients, string itemImageURL)
         {
-            return RedirectToAction("~/Recipes/Index");
+            Recipe r = new Recipe();
+            r.Title = itemTitle;
+            r.Ingredients = itemIngredients;
+            r.ImageURL = itemImageURL;
+            r.RecipeURL = itemRecipeURL;
+
+            db.Recipes.AddOrUpdate(r);
+            db.SaveChanges();
+
+            return RedirectToAction("DisplayFavorites");
+        }
+
+        public ActionResult DisplayFavorites()
+        {
+            List<Recipe> favorites = db.Recipes.ToList();
+            return View(favorites);
         }
 
     }
