@@ -66,6 +66,7 @@ namespace SearchAndSaveRecipes.Controllers
 
             db.Recipes.AddOrUpdate(r);
             db.SaveChanges();
+            Session["OnFavorites"] = "true";
 
             return RedirectToAction("DisplayFavorites", "Recipes" );
 

@@ -1,12 +1,21 @@
-﻿<br />
+﻿@{ 
+    Session.Clear();
+}
+<form action="~/Home/DisplayRecipes">
+    <div class="form-group">
+        <h1>Recipe Search</h1>
+        <h4>Powered by Recipe Puppy API</h4>
+        <small id="emailHelp" class="form-text text-muted">Don't Worry, we don't eat puppies</small>
+    </div>
 
-<h2>Recipe Search</h2>
-<p>Powered by Recipe Puppy API</p>
-<p style="font-size:smaller">(Don't worry, we don't eat puppies.)</p>
-
-<form action="~/Home/DisplayRecipes/">
-    <p>Search by ingredients</p><input type="text" name="ingredients"/> (please separated terms by commas)
-    <p>Search by title</p><input type="text" name="title"/>
-    <br />
-    <input type="submit" value="Find Recipies"/>
+    <div class="form-group">
+        <label for="Ingredient Search">Search by Ingredients</label>
+        <input type="text" class="form-control" placeholder="Ingredient Search" name="ingredients">
+        <small id="emailHelp" class="form-text text-muted">Separate ingredients by commas</small>
+    </div>
+    <div class="form-group">
+        <label for="Title Search">Search by Recipe Title</label>
+        <input type="text" class="form-control" placeholder="Title Search" name="title">
+    </div>
+    <button type="submit" class="btn btn-primary">Find Recipes</button>
 </form>
