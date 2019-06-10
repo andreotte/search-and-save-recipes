@@ -25,6 +25,8 @@ namespace SearchAndSaveRecipes.Controllers
             Search search = (Search)Session["Search"];
             search.Page++;
             List<Recipe> recipes = RecipeAPIDAL.APICall(search.Ingredients, search.Title, search.Page.ToString());
+            search.Recipes = recipes;
+            search = (Search)Session["Search"];
             return View(recipes);
         }
 
@@ -37,9 +39,9 @@ namespace SearchAndSaveRecipes.Controllers
             search.Title = title;
             search.Ingredients = ingredients;
             search.Page = 1;
-            Session["Search"] = search;
-        
             List<Recipe> recipes = RecipeAPIDAL.APICall(search.Ingredients, search.Title, search.Page.ToString());
+            search.Recipes = recipes;
+            Session["Search"] = search;
             return View(recipes);
         }
 
@@ -47,7 +49,8 @@ namespace SearchAndSaveRecipes.Controllers
         public ActionResult BackToSearch()
         {
             Search search = (Search)Session["Search"];
-            List<Recipe> recipes = RecipeAPIDAL.APICall(search.Ingredients, search.Title, search.Page.ToString());
+            search.Page--;
+            //List<Recipe> recipes = RecipeAPIDAL.APICall(search.Ingredients, search.Title, search.Page.ToString());
             search = (Search)Session["Search"];
             return RedirectToAction("DisplayRecipes");
         }
