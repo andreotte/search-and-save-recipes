@@ -1,11 +1,13 @@
 ﻿@model IEnumerable<SearchAndSaveRecipes.Models.Recipe>
+@using SearchAndSaveRecipes.Models
 
 @{
 
     ViewBag.Title = "DisplayRecipes";
+    Search search = (Search) Session["Search"];
 }
 
-<h2>Here Are Your Recipes! - Page @Session["page"]</h2>
+<h2>Here Are Your Recipes! - Page @search.Page</h2>
 
 <table class="table">
     <tr>
@@ -61,7 +63,8 @@
     if (count == 10)
     {
         <form action="~/Home/DisplayRecipes">
-            <input type="submit" value="Next Page" />
+
+        <input type="submit" value="Next Page" />
         </form>
      
     }

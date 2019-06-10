@@ -43,6 +43,15 @@ namespace SearchAndSaveRecipes.Controllers
             return View(recipes);
         }
 
+        
+        public ActionResult BackToSearch()
+        {
+            Search search = (Search)Session["Search"];
+            List<Recipe> recipes = RecipeAPIDAL.APICall(search.Ingredients, search.Title, search.Page.ToString());
+            search = (Search)Session["Search"];
+            return RedirectToAction("DisplayRecipes");
+        }
+
         public ActionResult AddFavorite(string itemTitle, string itemRecipeURL, string itemIngredients, string itemImageURL)
         {
             Recipe r = new Recipe();
