@@ -1,7 +1,7 @@
 ﻿@{ 
     Session.Clear();
 }
-<form action="~/Home/DisplayRecipes">
+<form action="~/Home/DisplayRecipes" method="post">
     <div class="form-group">
         <h1>Recipe Search</h1>
         <h4>Powered by Recipe Puppy API</h4>
@@ -19,3 +19,5 @@
     </div>
     <button type="submit" class="btn btn-primary">Find Recipes</button>
 </form>
+
+<p>@Session["page"]</p>
